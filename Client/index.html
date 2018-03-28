@@ -2,50 +2,49 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 </head>
 
 <body>
-    <input type="text" id="val" />
-    <button onclick="ajax_Get()">get</button>
-    <button onclick="ajax_Post()">post</button>
-    <script src="./jquery-2.2.3.min.js"></script>
+  <input type="text" id="val" />
+  <button onclick="ajax_Get()">get</button>
+  <button onclick="ajax_Post()">post</button>
+  <script src="./jquery-2.2.3.min.js"></script>
+  <script>
+  // get
+  function ajax_Get() {
+    $.ajax({
+      url: 'http://10.2.5.111:5500/api/test/getRole',
+      type: 'GET',
+      success: function(d) {
+        alert(JSON.stringify(d))
+      }
+    })
+  }
 
-    <script>
-        // get
-        function ajax_Get() {
-            $.ajax({
-                url: 'http://192.168.0.109:5500/api/test/test',
-                type: 'GET',
-                success: function (d) {
-                    alert(JSON.stringify(d))
-                }
-            })
+  // post
+  function ajax_Post() {
+    var obj = {
+      username: 'yangyh',
+      password: $('#val').val()
+    }
+    $.ajax({
+      url: 'http://192.168.0.109:5500/test/test_post',
+      type: 'POST',
+      data: obj,
+      success: function(d) {
+        if (d.Issuccess == 0) {
+          alert('success')
+        } else {
+          alert('error')
         }
-
-        // post
-        function ajax_Post() {
-            var obj = {
-                username: 'yangyh',
-                password: $('#val').val()
-            }
-            $.ajax({
-                url: 'http://192.168.0.109:5500/test/test_post',
-                type: 'POST',
-                data: obj,
-                success: function (d) {
-                    if (d.Issuccess == 0) {
-                        alert('success')
-                    } else {
-                        alert('error')
-                    }
-                }
-            })
-        }
-    </script>
+      }
+    })
+  }
+  </script>
 </body>
 
 </html>
