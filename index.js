@@ -19,10 +19,7 @@ server.use(restify.CORS());
 server.get('/api/:service/:api', controller.controller);
 server.post('/api/:service/:api', controller.controller);
 
-// test
-server.get('/test/test', controller.test);
-server.post('/test/test_post', controller.test_post);
-
+server.get('/api/:service', controller.crawler);
 
 
 server.listen(server_port, function() {
